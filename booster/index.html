@@ -49,6 +49,8 @@
   .nav-btn .em{font-size:19px}
   .nav-btn.set{color:var(--muted);font-size:11px}
   .nav-btn.more .em{font-size:22px;line-height:1}
+  .nav-btn.back-portal{color:var(--muted);font-weight:600;text-decoration:none}
+  .nav-btn.back-portal:hover{color:var(--accent)}
   /* 更多面板 */
   .more-backdrop{position:fixed;inset:0;background:rgba(30,20,45,.35);z-index:35;opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s}
   .more-backdrop.open{opacity:1;visibility:visible}
@@ -421,6 +423,7 @@
 <body data-page-node-id="uwcO4oHV1XxGg8pSWMKstM">
 <div class="wrap" data-page-node-id="8aorz0PUjEfCO6FAudA8VG">
   <aside class="sidebar" data-page-node-id="GetzZrzozsJZhjZeO2YrML">
+    <a class="nav-btn back-portal" href="../index.html" title="返回门户首页"><span class="em">🏠</span>门户</a>
     <div class="brand" data-page-node-id="HCsktZAFnxQM5XYpvBB7TM">📚 公众号助推助手<small data-page-node-id="JY0EFHS3SBUmqzPzlG7pZk">涨粉变现 · 聚焦赛道 · 稳定更新</small></div>
     <button class="nav-btn active" data-tab="workbench"><span class="em">🧩</span>工作台</button>
     <button class="nav-btn" data-tab="hot"><span class="em">🔥</span>爆款选题</button>
@@ -1300,7 +1303,7 @@
   /* 注意：数据分析页的 section id 是 data（track 是另一个「数据追踪」页），别挂错 */
   const TAB_ENTER={ compete:renderCompete, data:function(){ renderDataHistory(); renderKbStats(); } };
   $$(".sidebar .nav-btn").forEach(b=>{
-    if(b.classList.contains("more")) return;
+    if(b.classList.contains("more") || b.tagName!=="BUTTON") return; // 锚点（返回门户）走原生跳转，不接管
     b.addEventListener("click",()=>{ closeMorePanel(); updateNavActive(b.dataset.tab); showTab(b.dataset.tab); const fn=TAB_ENTER[b.dataset.tab]; if(fn) fn(); });
   });
   const moreBtn=$(".nav-btn.more");
