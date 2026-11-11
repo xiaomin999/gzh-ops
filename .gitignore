@@ -1,0 +1,6 @@
+# 本地开发/备份产物，不进仓库
+_*.py
+*.bak
+.trash/
+node_modules/
+.DS_Store
